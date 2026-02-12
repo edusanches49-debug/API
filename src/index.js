@@ -28,6 +28,7 @@ app.get('/', (req, res) => {
 //comentario ejemplo
 app.post('/sumar', (req, res) => {
     const { num1, num2 } = req.body;//se declaran los datos de entrada 
+ 
     
     //validar que se hayan enviado los dos numeros que no esten vacios
     if(num1 === undefined || num2 === undefined){
@@ -37,6 +38,48 @@ app.post('/sumar', (req, res) => {
     //Sumar los numeros
     const resultado = num1 + num2;
 
+    
     //Enviar el resultado al front
     res.send({ resultado });//se envia el resultado al front
+});
+app.post('/restar', (req, res) => {
+    const { num1, num2 } = req.body;
+    //validar que se hayan enviado los dos numeros
+    if(num1 === undefined || num2 === undefined){
+        return res.status(400).json({'error': 'Faltan numeros para restar'})
+    }
+    //Restar los numeros
+    const resultado = num1 - num2;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+
+//Endpoint para multiplicar
+app.post('/multiplicar', (req, res) => {
+    const { num1, num2 } = req.body;
+    //validar que se hayan enviado los dos numeros
+    if(num1 === undefined || num2 === undefined){
+        return res.status(400).json({'error': 'Faltan numeros para multiplicar'})
+    }
+    //Multiplicar los numeros
+    const resultado = num1 * num2;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+
+//Endpoint para dividir
+app.post('/dividir', (req, res) => {
+    const { num1, num2 } = req.body;
+    //validar que se hayan enviado los dos numeros
+    if(num1 === undefined || num2 === undefined){
+        return res.status(400).json({'error': 'Faltan numeros para dividir'})
+    }
+    //validar que el divisor no sea cero
+    if(num2 === 0){
+        return res.status(400).json({'error': 'No se puede dividir entre cero'})
+    }
+    //Dividir los numeros
+    const resultado = num1 / num2;
+    //Enviar el resultado al front
+    res.send({ resultado });
 });
