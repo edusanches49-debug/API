@@ -42,6 +42,39 @@ app.post('/sumar', (req, res) => {
     //Enviar el resultado al front
     res.send({ resultado });//se envia el resultado al front
 });
+app.post('/area-triangulo', (req, res) => {
+    const { base, altura } = req.body;
+    //validar que se hayan enviado los dos numeros
+    if(base === undefined || altura === undefined){
+        return res.status(400).json({'error': 'Faltan datos para calcular el area del triangulo'})
+    }
+    //Calcular el area del triangulo
+    const resultado = (base * altura) / 2;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+app.post('/area-circulo', (req, res) => {
+    const { radio } = req.body;
+    //validar que se haya enviado el radio
+    if(radio === undefined){
+        return res.status(400).json({'error': 'Falta el radio para calcular el area del circulo'})
+    }
+    //Calcular el area del circulo
+    const resultado = Math.PI * radio * radio;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+app.post('/area-cuadrado', (req, res) => {
+    const { lado } = req.body;
+    //validar que se haya enviado el lado
+    if(lado === undefined){
+        return res.status(400).json({'error': 'Falta el lado para calcular el area del cuadrado'})
+    }
+    //Calcular el area del cuadrado
+    const resultado = lado * lado;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
 app.post('/restar', (req, res) => {
     const { num1, num2 } = req.body;
     //validar que se hayan enviado los dos numeros
