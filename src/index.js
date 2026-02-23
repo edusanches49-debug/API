@@ -53,6 +53,39 @@ app.post('/area-triangulo', (req, res) => {
     //Enviar el resultado al front
     res.send({ resultado });
 });
+app.post('/perimetro-triangulo', (req, res) => {
+    const { lado1, lado2, lado3 } = req.body;
+    //validar que se hayan enviado los tres lados
+    if(lado1 === undefined || lado2 === undefined || lado3 === undefined){
+        return res.status(400).json({'error': 'Faltan datos para calcular el perimetro del triangulo'})
+    }
+    //Calcular el perimetro del triangulo
+    const resultado = lado1 + lado2 + lado3;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+app.post('/perimetro-cuadrado', (req, res) => {
+    const { lado } = req.body;
+    //validar que se haya enviado el lado
+    if(lado === undefined){
+        return res.status(400).json({'error': 'Falta el lado para calcular el perimetro del cuadrado'})
+    }
+    //Calcular el perimetro del cuadrado
+    const resultado = 4 * lado;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
+app.post('/perimetro-circulo', (req, res) => {
+    const { radio } = req.body;
+    //validar que se haya enviado el radio
+    if(radio === undefined){
+        return res.status(400).json({'error': 'Falta el radio para calcular el perimetro del circulo'})
+    }
+    //Calcular el perimetro del circulo
+    const resultado = 2 * Math.PI * radio;
+    //Enviar el resultado al front
+    res.send({ resultado });
+});
 app.post('/area-circulo', (req, res) => {
     const { radio } = req.body;
     //validar que se haya enviado el radio
